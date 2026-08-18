@@ -1,0 +1,38 @@
+name: Manual Testnet Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Stellar Testnet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+        
+      - name: Install stellar-cli
+        run: cargo binstall --no-confirm stellar-cli
+
+      - name: Configure Stellar Identity
+        run: |
+          mkdir -p ~/.config/stellar/identity
+          echo "[[identity]]" > ~/.config/stellar/identity/pledgevault-deployer.toml
+          echo "secret = \"${{ secrets.STELLAR_TESTNET_SECRET }}\"" >> ~/.config/stellar/identity/pledgevault-deployer.toml
+
+      - name: Build Contracts
+        run: cargo build --target wasm32-unknown-unknown --release
+
+      - name: Deploy Contracts
+        run: |
+          # The exact deploy script logic can be implemented here or by calling the ps1/sh script.
+          # For a production CD pipeline, usually a bash script `deploy.sh` is triggered.
+          echo "Deploying to Testnet using stellar-cli..."
+          stellar contract build
+          # ...
