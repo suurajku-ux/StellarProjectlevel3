@@ -1,0 +1,8 @@
+{
+  "factoryId": "CCH5DOHHH55PLC6H5UE46YUIMFFX3L6BX3PGIZPAP3GQXXTQIKL4BY3K",
+  "campaignWasmHash": "01af49681f4a58c34d6e28bc0fb5b09b04653040ff2c322ec95c3acf75dba585",
+  "testCampaignAddress": "CBBCNE4RMVIWVA6X5GIBKZYVDEJ42TPV2PY2L5WWIAANECWOHQ3Z4L4V",
+  "deployerAddress": "GATMWRXXLMGIP356DLH2VKPRC2CPCMHLIT62WFA4IQLXPFURRNYSLYYK",
+  "networkPassphrase": "Test SDF Network ; September 2015",
+  "rpcUrl": "https://soroban-testnet.stellar.org"
+}
